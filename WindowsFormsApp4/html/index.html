@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Form Validation</h1>
+        <p>
+            <label for="name">Enter your name:</label>
+            <input type="text" placeholder="John Smith" name="name" id="name">
+        </p>
+        <p>
+            <label for="age">Enter your age:</label>
+            <input type="number" placeholder="30" name="age" id="age">
+        </p>
+        <p>
+            <label for="dob">Enter your DOB:</label>
+            <input type="text" placeholder="dd/mm/yy" name="dob" id="dob">
+        </p>
+        <p>
+            <input type="button" value="Validate" id=val-btn>
+        </p>
+        <p>
+            <label id="val"></label>
+        </p>
+    </div>
+
+    <script>
+        var btn = document.getElementById('val-btn');
+
+        btn.addEventListener('click', OnClick);
+
+        function OnClick() {
+            var fnrsf = document.getElementById("val");
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var dob = document.getElementById("dob").value;
+            var text = "";
+            let nameReg = /^[a-z ]+$/i;
+            if (!nameReg.test(name)) {
+                text += "name must only contain letters<br>"
+            }
+            if (age < 0) {
+                text += "age must be positive<br>";
+            }
+            if (age == "") {
+                text += "Please enter an age<br>"
+            }
+            let dobReg = /^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9]$/
+            if (!dobReg.test(dob)) {
+                text += "DOB must be of form dd/mm/yy<br>";
+            }
+            if (text == "") {
+                text = "Valid!"
+            }
+            val.innerHTML = text;
+        }
+    </script>
+
+</body>
+</html>
